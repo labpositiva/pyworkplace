@@ -25,13 +25,13 @@ before_install:
   - docker-compose -v
   - docker -v
 
-before_script:
+install:
   - touch .env
+  - make build env=test
+
+before_script:
   - make install env=test
   - make lint
 
 script:
     - make test
-
-install:
-    - make build env=test
