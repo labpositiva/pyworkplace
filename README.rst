@@ -1,7 +1,7 @@
 pyworkplace
 ###########
 
-|Build Status| |wercker_status| |GitHub issues| |license|
+|Python| |Build Status| |wercker_status| |Pyup| |GitHub issues| |license|
 
 :Version: 0.0.0
 :Web: https://github.com/labpositiva/pyworkplace
@@ -104,6 +104,12 @@ Credits
 
 Made with ♥️and ☕️by `author`_ and `company`_.
 
+.. |Pyup| image:: https://pyup.io/repos/github/labpositiva/pyworkplace/shield.svg
+     :target: https://pyup.io/repos/github/labpositiva/pyworkplace/
+     :alt: Updates
+.. |Python| image:: https://pyup.io/repos/github/labpositiva/pyworkplace/python-3-shield.svg
+     :target: https://pyup.io/repos/github/labpositiva/pyworkplace/
+     :alt: Python 3
 .. |Build Status| image:: https://travis-ci.org/labpositiva/pyworkplace.svg
    :target: https://travis-ci.org/labpositiva/pyworkplace
 .. |GitHub issues| image:: https://img.shields.io/github/issues/labpositiva/pyworkplace.svg
