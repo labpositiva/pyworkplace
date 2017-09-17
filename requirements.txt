@@ -1,0 +1,4 @@
+openpyxl==2.4.8
+requests==2.13.0
+verify==1.1.1
+yamlreader==3.0.4
