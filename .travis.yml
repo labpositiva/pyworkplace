@@ -26,7 +26,7 @@ before_install:
   - docker -v
 
 install:
-  - touch .env
+  - cp .env-sample .env
   - make build env=test
 
 before_script:
