@@ -1,6 +1,7 @@
 # Config file for automatic testing at travis-ci.org
 
-sudo: required
+sudo: true
+dist: trusty
 
 services:
   - docker
@@ -19,7 +20,7 @@ before_install:
   - sudo rm /usr/local/bin/docker-compose
   - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose-bin
   - chmod +x docker-compose-bin
-  - sudo mv docker-compose-bin /usr/local/bin
+  - sudo mv docker-compose-bin /usr/local/bin/docker-compose
   - docker-compose -v
   - docker -v
 
