@@ -12,12 +12,12 @@ pyworkplace
 .. contents:: Table of Contents:
     :local:
 
-Pyworkplace for update telephone
+Pyworkplace Wrapper for workplace
 
 Features
 ========
 
--  Update info users
+- Task
 
 Requirements:
 =============
@@ -47,12 +47,6 @@ Usage
 .. code-block:: bash
 
   λ make build
-
-- Execute migrate
-
-.. code-block:: bash
-
-  λ docker-compose run --rm python -m pyworkplace.app
 
 Actions:
 ========
