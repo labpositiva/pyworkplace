@@ -1,4 +1,4 @@
-box: jpetazzo/dind
+box: python:3.6.1
 dev:
   steps:
     - script:
@@ -19,36 +19,19 @@ build:
         name: update packages
         code: |
           sudo apt-get update
-          sudo apt-get install -y build-essential
-
-    - script:
-        name: Check docker version
-        code: |
-          docker -v
-
-    - script:
-        name: Install compose
-        code: |
-          # sudo rm -rf /usr/local/bin/docker-compose >> /dev/null 2>&1
-          curl -L https://github.com/docker/compose/releases/download/1.16.1/docker-compose-`uname -s`-`uname -m` > docker-compose-bin
-          chmod +x docker-compose-bin
-          sudo mv docker-compose-bin /usr/local/bin/docker-compose
-          docker-compose -v
-          docker -v
+          sudo apt-get install -y shellcheck build-essential
 
     - script:
         name: Build dependences
         code: |
-          cp .env-sample .env
-          make build env=test
+          make install env=test
 
     - script:
-        name: install dependences test
+        name: lint code
         code: |
-          make install env=test
           make lint
 
     - script:
         name: Testing
         code: |
-          make test
+          py.test --cov pyworkplace --cov tests --doctest-modules --verbose pyworkplace tests
