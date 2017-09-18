@@ -28,7 +28,7 @@ build:
     - script:
         name: Install compose
         code: |
-          sudo rm /usr/local/bin/docker-compose
+          sudo rm /usr/local/bin/docker-compose >> /dev/null 2>&1
           curl -L https://github.com/docker/compose/releases/download/1.16.1/docker-compose-`uname -s`-`uname -m` > docker-compose-bin
           chmod +x docker-compose-bin
           sudo mv docker-compose-bin /usr/local/bin/docker-compose
