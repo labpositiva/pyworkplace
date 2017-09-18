@@ -1,4 +1,4 @@
-box: wercker-labs/docker
+box: docker
 dev:
   steps:
     - script:
