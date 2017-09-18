@@ -1,4 +1,4 @@
-box: python:3.6.1
+box: wercker-labs/docker
 dev:
   steps:
     - script:
@@ -24,25 +24,41 @@ build:
         fingerprint: 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48
 
     - script:
-        name: install shellcheck
+        name: update packages
         code: |
           sudo apt-get update
-          sudo apt-get install -y shellcheck
 
     - script:
-        name: install dependences dev
+        name: Check docker version
         code: |
-          make install env=dev
+          docker -v
 
     - script:
-        name: install dependences stage
+        name: Install compose
         code: |
-          make install env=stage
+          sudo rm /usr/local/bin/docker-compose
+          curl -L https://github.com/docker/compose/releases/download/1.16.1/docker-compose-`uname -s`-`uname -m` > docker-compose-bin
+          chmod +x docker-compose-bin
+          sudo mv docker-compose-bin /usr/local/bin/docker-compose
+          docker-compose -v
+          docker -v
 
     - script:
-        name: install dependences production
+        name: Build dependences
         code: |
-          make install env=production
+          cp .env-sample .env
+          make build env=test
+
+    - script:
+        name: install dependences test
+        code: |
+          make install env=test
+          make lint
+
+    - script:
+        name: Testing
+        code: |
+          make test
 
   after-steps:
     - install-packages:
@@ -52,45 +68,6 @@ build:
         name: Show vars env
         code: |
             env
-
-    - wantedly/pretty-slack-notify:
-        webhook_url: $SLACK_WEBHOOK_URL
-        channel: $SLACK_CHANNEL
-        username: $SLACK_USERNAME
-        passed_message: "Genial!!! :smile:"
-        failed_message: "Oh noooo :scream:"
-        notify_on: "failed"
-
-# Testing definition
-test:
-  steps:
-
-    - add-ssh-key:
-        keyname: GITHUB_KEY
-        host: github.com
-
-    - add-to-known_hosts:
-        hostname: github.com
-        fingerprint: 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48
-
-    - script:
-      name: Show vars env
-      code: |
-          env
-
-    - script:
-        name: install dependences
-        code: |
-          make install env=test
-
-    - script:
-        name: Run Test
-        code: |
-          make test
-
-  after-steps:
-    - install-packages:
-        packages: ruby
 
     - wantedly/pretty-slack-notify:
         webhook_url: $SLACK_WEBHOOK_URL
