@@ -1,7 +1,7 @@
 pyworkplace
 ###########
 
-|Python| |Build Status| |wercker_status| |Pyup| |GitHub issues| |license|
+|Python| |Build Status| |Wercker| |Pyup| |GitHub issues| |license|
 
 :Version: 0.0.0
 :Web: https://github.com/labpositiva/pyworkplace
@@ -114,10 +114,9 @@ Made with ♥️and ☕️by `author`_ and `company`_.
    :target: https://travis-ci.org/labpositiva/pyworkplace
 .. |GitHub issues| image:: https://img.shields.io/github/issues/labpositiva/pyworkplace.svg
    :target: https://github.com/labpositiva/pyworkplace/issues
-.. |wercker_status| image::
-                    https://app.wercker.com/status/2040327c395b07be15b2031426ec92f1/s/master"wercker
-                    status"
-  :target: https://app.wercker.com/project/byKey/2040327c395b07be15b2031426ec92f1
+.. |Wercker| image::
+             https://app.wercker.com/status/642f4288274e91f723ec2ecf7c03966c/s/ 'wercker status'
+  :target: https://app.wercker.com/project/byKey/642f4288274e91f723ec2ecf7c03966c
   :alt: wercker status
 .. |license| image:: https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square
   :target: LICENSE
