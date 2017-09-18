@@ -1,4 +1,4 @@
-box: docker
+box: jpetazzo/dind
 dev:
   steps:
     - script:
