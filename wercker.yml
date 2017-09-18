@@ -15,14 +15,6 @@ build:
   # The steps that will be executed on build
   steps:
 
-    - add-ssh-key:
-        keyname: GITHUB_KEY
-        host: github.com
-
-    - add-to-known_hosts:
-        hostname: github.com
-        fingerprint: 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48
-
     - script:
         name: update packages
         code: |
@@ -59,20 +51,3 @@ build:
         name: Testing
         code: |
           make test
-
-  after-steps:
-    - install-packages:
-        packages: ruby
-
-    - script:
-        name: Show vars env
-        code: |
-            env
-
-    - wantedly/pretty-slack-notify:
-        webhook_url: $SLACK_WEBHOOK_URL
-        channel: $SLACK_CHANNEL
-        username: $SLACK_USERNAME
-        passed_message: "Genial!!! :smile:"
-        failed_message: "Oh noooo :scream:"
-        notify_on: "failed"
