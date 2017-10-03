@@ -2,8 +2,7 @@
 # See ./CONTRIBUTING.rst
 #
 
-lint: ## Make Lint Files
-	@make clean
+test.lint: clean
 	pre-commit run --all-files --verbose
 
 test: ## make test
