@@ -1,0 +1,37 @@
+box: python:3.6.1
+dev:
+  steps:
+    - script:
+        name: install shellcheck
+        code: |
+          sudo apt-get update
+          sudo apt-get install -y shellcheck
+    - script:
+        name: install dependences
+        code: make install env=dev
+
+# Build definition
+build:
+  # The steps that will be executed on build
+  steps:
+
+    - script:
+        name: update packages
+        code: |
+          sudo apt-get update
+          sudo apt-get install -y shellcheck build-essential
+
+    - script:
+        name: Build dependences
+        code: |
+          make install env=test
+
+    - script:
+        name: lint code
+        code: |
+          make lint
+
+    - script:
+        name: Testing
+        code: |
+          py.test --cov pyworkplace --cov tests --doctest-modules --verbose pyworkplace tests
