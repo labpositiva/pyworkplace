@@ -3,7 +3,7 @@ pyworkplace
 
 |Python| |Build Status| |Wercker| |Pyup| |GitHub issues| |license|
 
-:Version: 0.1.0
+:Version: 0.1.1
 :Web: https://github.com/labpositiva/pyworkplace
 :Download: http://github.com/labpositiva/pyworkplace
 :Source: http://github.com/labpositiva/pyworkplace
