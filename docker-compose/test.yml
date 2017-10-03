@@ -7,7 +7,7 @@ services:
 
   app:
     environment: &environment
-      - SECRET_KEY=u@g-x3m3_-npvkr*pw*1&^8bw0#!l&(3j3oqe_+=vsp26o74i1
+      - APP_NAME=pyworkplace
     build:
       context: .
       dockerfile: docker/app-test/Dockerfile
