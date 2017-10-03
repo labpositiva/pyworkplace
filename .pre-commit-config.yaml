@@ -1,5 +1,5 @@
 -   repo: https://github.com/pre-commit/pre-commit-hooks.git
-    sha: v0.9.3
+    sha: v0.9.5
     hooks:
     -   id: detect-private-key
         files: ^(?!\.?git-crypt)
@@ -34,7 +34,8 @@
     -   id: requirements-txt-fixer
     -   id: check-symlinks
     -   id: name-tests-test
-        args: [--django]
+        args:
+        - --django
     -   id: file-contents-sorter
     -   id: fix-encoding-pragma
     -   id: sort-simple-yaml
@@ -56,7 +57,7 @@
         - --disable=no-name-in-module,import-error
         - --ignore=settings_test, migrations
 -   repo: https://github.com/pre-commit/pre-commit.git
-    sha: v1.1.0
+    sha: v1.1.2
     hooks:
     -   id: validate_manifest
 -   repo: https://github.com/asottile/reorder_python_imports.git
@@ -68,10 +69,14 @@
     sha: 1.0.2
     hooks:
     -   id: shell-lint
-        exclude: ^script/wait-for-it.sh$
+        exclude: ^extras/script/wait-for-it.sh$
         args:
         - --exclude=SC1072,SC1073,SC2068
 -   repo: https://github.com/asottile/add-trailing-comma
     sha: v0.6.4
     hooks:
     -   id: add-trailing-comma
+-   repo: https://github.com/Lucas-C/pre-commit-hooks-safety
+    sha: v1.1.0
+    hooks:
+    -   id: python-safety-dependencies-check
