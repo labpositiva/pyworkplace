@@ -11,10 +11,21 @@ services:
     restart: always
     image: python:3.6.1
     environment: &environment
-      - SECRET_KEY=u@g-x3m3_-npvkr*pw*1&^8bw0#!l&(3j3oqe_+=vsp26o74i1
+      - APP_NAME=pyworkplace
     build:
       context: .
       dockerfile: docker/app/Dockerfile
+    volumes:
+      - .:/usr/src
+    env_file:
+      - .env
+
+  docs:
+    restart: always
+    image: labpositiva/latex:3.6.1
+    build:
+      context: .
+      dockerfile: docker/docs/Dockerfile
     volumes:
       - .:/usr/src
     env_file:
