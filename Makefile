@@ -2,8 +2,10 @@
 # See ./CONTRIBUTING.rst
 #
 
-TAG :=""
-END :=""
+VERSION:=$(shell grep __version__ pyworkplace/__init__.py)
+REQUIREMENTS="requirements-dev.txt"
+TAG=""
+END=""
 
 .PHONY: help build up requirements clean lint test help
 .DEFAULT_GOAL := help

@@ -14,4 +14,5 @@ jedi==0.10.2
 pre-commit==0.15.2
 pylint==1.7.1
 restview==2.7.0
+twine==1.9.1
 yapf==0.16.1
