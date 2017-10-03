@@ -4,8 +4,8 @@
 
 VERSION:=$(shell grep __version__ pyworkplace/__init__.py)
 REQUIREMENTS="requirements-dev.txt"
-TAG="\n\n\033[0;32m\#\#\# "
-END=" \#\#\# \033[0m\n"
+TAG=""
+END=""
 
 .PHONY: help build up requirements clean lint test help
 .DEFAULT_GOAL := help
