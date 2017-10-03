@@ -54,25 +54,35 @@ Actions:
 .. code-block:: bash
 
   λ make
-    ༼ つ ◕_◕ ༽つ Commands
-      build                Build docker container by env
-      clean                clean Files compiled
-      documentation        Make Documentation
-      down                 remove containers docker by env
-      environment          Make environment for developer
-      env                  Show envs available
-      install              Install with var env Dependences
-      generate             Generate pdf
-      list                 List of current active services by env
-      lint                 Make Lint Files
-      test                 make test
-      up                   Up application by env
-      restart              Reload services
-      ssh                  Connect to container
-      stop                 stop containers docker by env
-      setup                Install dependences initial
-      verify_network       Verify network
-      help                 Show help text
+      ༼ つ ◕_◕ ༽つ Makefile for pyworkplace
+
+      Usage:
+          make environment               create environment with pyenv
+          make install                   install dependences python by env
+          make clean                     remove files of build
+          make setup                     install requirements
+
+          Docker:
+
+              make docker.build         build all services with docker-compose
+              make docker.down          down services docker-compose
+              make docker.ssh           connect by ssh to container
+              make docker.stop          stop services by env
+              make docker.verify_network           verify network
+              make docker.up             up services of docker-compose
+              make docker.list           list services of docker
+
+          Docs:
+
+              docs.show                  Show restview README
+              docs.make.html             Make documentation html
+              docs.make.pdf              Make documentation pdf
+
+          Tests:
+
+              test.lint                  Run all pre-commit
+              test.syntax                Run all syntax in code
+
 
 License
 =======
@@ -96,7 +106,7 @@ Credits
 -  `author`_
 -  `contributors`_
 
-Made with ♥️and ☕️by `author`_ and `company`_.
+Made with :heart: :coffee: and :pizza: by `labpositiva <https://github.com/labpositiva>`__
 
 .. |Pyup| image:: https://pyup.io/repos/github/labpositiva/pyworkplace/shield.svg
      :target: https://pyup.io/repos/github/labpositiva/pyworkplace/
@@ -122,7 +132,7 @@ Made with ♥️and ☕️by `author`_ and `company`_.
 .. _`contributing`: CONTRIBUTING.rst
 
 
-.. _`company`: https://github.com/labpositivatd
+.. _`company`: https://github.com/labpositiva
 .. _`author`: https://github.com/luismayta
 
 .. dependences
