@@ -55,33 +55,36 @@ Actions:
 
   λ make
       ༼ つ ◕_◕ ༽つ Makefile for pyworkplace
-
       Usage:
-          make environment               create environment with pyenv
-          make install                   install dependences python by env
-          make clean                     remove files of build
-          make setup                     install requirements
+        make environment               create environment with pyenv
+        make install                   install dependences python by env
+        make clean                     remove files of build
+        make setup                     install requirements
 
-          Docker:
+        Docker:
 
-              make docker.build         build all services with docker-compose
-              make docker.down          down services docker-compose
-              make docker.ssh           connect by ssh to container
-              make docker.stop          stop services by env
-              make docker.verify_network           verify network
-              make docker.up             up services of docker-compose
-              make docker.list           list services of docker
+            make docker.build         build all services with docker-compose
+            make docker.down          down services docker-compose
+            make docker.ssh           connect by ssh to container
+            make docker.stop          stop services by env
+            make docker.verify_network           verify network
+            make docker.up             up services of docker-compose
+            make docker.list           list services of docker
 
-          Docs:
+        Docs:
 
-              docs.show                  Show restview README
-              docs.make.html             Make documentation html
-              docs.make.pdf              Make documentation pdf
+            docs.show                  Show restview README
+            docs.make.html             Make documentation html
+            docs.make.pdf              Make documentation pdf
 
-          Tests:
+        Package:
 
-              test.lint                  Run all pre-commit
-              test.syntax                Run all syntax in code
+            package.build              Build Package
+
+        Tests:
+
+            test.lint                  Run all pre-commit
+            test.syntax                Run all syntax in code
 
 
 License
