@@ -61,8 +61,10 @@ help:
 	@echo ''
 	@echo '    Tests:'
 	@echo ''
+	@echo '        test                       Run All tests with coverage'
 	@echo '        test.lint                  Run all pre-commit'
 	@echo '        test.syntax                Run all syntax in code'
+	@echo '        test.pytest                Run all tests for execute ipdb'
 	@echo ''
 
 clean:

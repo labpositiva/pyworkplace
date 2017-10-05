@@ -83,8 +83,10 @@ Actions:
 
         Tests:
 
+            test                       Run All tests with coverage
             test.lint                  Run all pre-commit
             test.syntax                Run all syntax in code
+            test.pytest                Run all tests for execute ipdb
 
 
 License
