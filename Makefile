@@ -55,6 +55,10 @@ help:
 	@echo '        docs.make.html             Make documentation html'
 	@echo '        docs.make.pdf              Make documentation pdf'
 	@echo ''
+	@echo '    Package:'
+	@echo ''
+	@echo '        package.build              Build Package'
+	@echo ''
 	@echo '    Tests:'
 	@echo ''
 	@echo '        test.lint                  Run all pre-commit'
@@ -65,6 +69,7 @@ clean:
 	@echo "$(TAG)"Cleaning up"$(END)"
 	@rm -rf .tox *.egg dist build .coverage
 	@find . -name '__pycache__' -delete -print -o -name '*.pyc' -delete -print -o -name '*.tmp' -delete -print
+	@rm -rf *.egg-info/
 	@echo
 
 setup: clean
