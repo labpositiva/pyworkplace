@@ -3,7 +3,7 @@ import ast
 import os
 
 
-DEFAULT_API_VERSION = 2.6
+DEFAULT_API_VERSION = 'v2.6'
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Application
