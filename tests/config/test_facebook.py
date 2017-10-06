@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 
+import mock
 from hamcrest import assert_that
 from hamcrest import equal_to
 
@@ -19,9 +20,9 @@ def test_url_graph_default():
     )
 
 
+@mock.patch.dict(os.environ, {'FACEBOOK_GRAPH_VERSION': 'v2.8'})
 def test_url_graph():
-    os.environ['FACEBOOK_GRAPH_VERSION'] = 'v2.8'
     assert_that(
-        'https://graph.facebook.com/v2.8/',
         equal_to(FACEBOOK_GRAPH_URL),
+        'https://graph.facebook.com/v2.8/',
     )
