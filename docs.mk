@@ -3,7 +3,6 @@
 #
 
 docs.show: clean
-	@make clean
 	restview "${FILE_README}"
 
 docs.make.html: clean

@@ -13,5 +13,10 @@ test: clean
 
 test.pytest: clean
 	@echo $(MESSAGE) Running tests on the current Python $(END)
-	docker-compose -f docker-compose.yml -f docker-compose/test.yml run --rm app \
-		py.test -s pyworkplace tests
+	@if [ "${test}" == "" ]; then \
+		docker-compose -f docker-compose.yml -f docker-compose/test.yml run --rm app \
+			py.test -s pyworkplace tests; \
+	else \
+		docker-compose -f docker-compose.yml -f docker-compose/test.yml run --rm app \
+			py.test tests/"${test}"; \
+	fi
