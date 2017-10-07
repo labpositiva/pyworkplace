@@ -36,7 +36,5 @@ FACEBOOK_GRAPH_TOKEN = os.environ.get(
 )
 FACEBOOK_GRAPH_URL = os.environ.get(
     'PYWORKPLACE_URL_GRAPH',
-    'https://graph.facebook.com/{}/'.format(
-        FACEBOOK_GRAPH_VERSION,
-    ),
+    'https://graph.facebook.com/',
 )
