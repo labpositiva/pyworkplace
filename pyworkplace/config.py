@@ -3,8 +3,6 @@ import ast
 import os
 
 
-DEFAULT_API_VERSION = 'v2.6'
-
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Application
 
@@ -13,15 +11,24 @@ HEADER_AUTH_KEY = 'Authorization'
 HEADER_AUTH_VAL_PREFIX = 'Bearer'
 
 # Workplace
-WORKPLACE_URL = os.environ.get('PYWORKPLACE_URL')
-WORKPLACE_VERSION = os.environ.get('PYWORKPLACE_VERSION')
-WORKPLACE_ACCESS_TOKEN = os.environ.get('PYWORKPLACE_ACCESS_TOKEN')
-WORKPLACE_API_VERSION = os.environ.get(
-    'PYWORKPLACE_API_VERSION', DEFAULT_API_VERSION,
+WORKPLACE_URL = os.environ.get(
+    'PYWORKPLACE_URL',
+    'https://www.facebook.com/scim/',
 )
+WORKPLACE_API_VERSION = os.environ.get(
+    'PYWORKPLACE_API_VERSION',
+    'v1',
+)
+WORKPLACE_API_URL = os.environ.get(
+    'PYWORKPLACE_API_URL',
+    'https://developers.facebook.com/scim/{}/'.format(
+        WORKPLACE_API_VERSION,
+    ),
+)
+WORKPLACE_ACCESS_TOKEN = os.environ.get('PYWORKPLACE_ACCESS_TOKEN')
 
 FACEBOOK_GRAPH_VERSION = os.environ.get(
-    'pyworkplace_graph_version',
+    'PYWORKPLACE_GRAPH_VERSION',
     'v2.6',
 )
 FACEBOOK_GRAPH_URL = os.environ.get(
