@@ -3,7 +3,7 @@
 #
 
 VERSION:=$(shell grep __version__ pyworkplace/__init__.py)
-REQUIREMENTS="requirements-dev.txt"
+REQUIREMENTS :="requirements-dev.txt"
 TAG=""
 END=""
 
