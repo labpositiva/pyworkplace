@@ -10,10 +10,10 @@ def test_base_default():
     """
     base = Base()
     assert_that(
-        equal_to(base.version),
         'v1',
+        equal_to(base.version),
     )
     assert_that(
+        'https://www.facebook.com/scim/v1/',
         equal_to(base.url),
-        'https://developers.facebook.com/scim/v1/',
     )
