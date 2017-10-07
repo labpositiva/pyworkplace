@@ -18,5 +18,5 @@ test.pytest: clean
 			py.test -s pyworkplace tests; \
 	else \
 		docker-compose -f docker-compose.yml -f docker-compose/test.yml run --rm app \
-			py.test tests/"${test}"; \
+			py.test -s tests/"${test}"; \
 	fi
