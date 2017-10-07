@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 import requests
 
+from pyworkplace.config import FACEBOOK_GRAPH_TOKEN
+from pyworkplace.config import FACEBOOK_GRAPH_URL
+from pyworkplace.config import FACEBOOK_GRAPH_VERSION
 from pyworkplace.config import HEADER_AUTH_KEY
 from pyworkplace.config import HEADER_AUTH_VAL_PREFIX
 from pyworkplace.config import WORKPLACE_ACCESS_TOKEN
@@ -135,3 +138,24 @@ class Base(object):
         }
         payload['notification_type'] = notification_type.value
         return self.send_raw(payload)
+
+
+class Facebook(Base):
+
+    def __init__(self, **kwargs):
+        """
+        @required:
+            access_token
+        @optional:
+            version
+        """
+
+        self.version = kwargs.get(
+            'version',
+            FACEBOOK_GRAPH_VERSION,
+        )
+        self.access_token = kwargs.get(
+            'access_token',
+            FACEBOOK_GRAPH_TOKEN,
+        )
+        self.url = FACEBOOK_GRAPH_URL
