@@ -20,7 +20,7 @@ def test_url_graph_default():
     )
 
 
-@mock.patch.dict(os.environ, {'FACEBOOK_GRAPH_VERSION': 'v2.8'})
+@mock.patch.dict(os.environ, {'PYWORKPLACE_GRAPH_VERSION': 'v2.8'})
 def test_url_graph():
     assert_that(
         equal_to(FACEBOOK_GRAPH_URL),
