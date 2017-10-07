@@ -31,6 +31,9 @@ FACEBOOK_GRAPH_VERSION = os.environ.get(
     'PYWORKPLACE_GRAPH_VERSION',
     'v2.6',
 )
+FACEBOOK_GRAPH_TOKEN = os.environ.get(
+    'PYWORKPLACE_GRAPH_TOKEN',
+)
 FACEBOOK_GRAPH_URL = os.environ.get(
     'PYWORKPLACE_URL_GRAPH',
     'https://graph.facebook.com/{}/'.format(
