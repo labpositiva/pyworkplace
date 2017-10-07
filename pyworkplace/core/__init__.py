@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import requests
 
+from pyworkplace.config import DEBUG
 from pyworkplace.config import FACEBOOK_GRAPH_TOKEN
 from pyworkplace.config import FACEBOOK_GRAPH_URL
 from pyworkplace.config import FACEBOOK_GRAPH_VERSION
@@ -48,13 +49,13 @@ class Base(object):
             version
         """
 
-        self.version = kwargs.get('version') or WORKPLACE_API_VERSION
+        self.version = kwargs.get('version', WORKPLACE_API_VERSION)
         self.access_token = kwargs.get(
-            'access_token',
-        ) or WORKPLACE_ACCESS_TOKEN
+            'access_token', WORKPLACE_ACCESS_TOKEN,
+        )
         self.url = '{}{}/'.format(
             WORKPLACE_URL,
-            WORKPLACE_API_VERSION,
+            self.version,
         )
 
     def _make_request(self, **kwargs):
@@ -117,6 +118,10 @@ class Base(object):
         kwargs['method'] = kwargs.get('method', 'get')
         kwargs['headers'] = kwargs.get('headers') or self.auth_args
 
+        if DEBUG:
+            self._response = kwargs
+            return self._response
+
         return self._make_request(**kwargs)
 
     def send_message(
@@ -158,4 +163,7 @@ class Facebook(Base):
             'access_token',
             FACEBOOK_GRAPH_TOKEN,
         )
-        self.url = FACEBOOK_GRAPH_URL
+        self.url = '{}{}/'.format(
+            FACEBOOK_GRAPH_URL,
+            self.version,
+        )
