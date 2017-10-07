@@ -10,12 +10,12 @@ def test_facebook_default():
     """
     facebook = Facebook()
     assert_that(
-        'v2.6',
         equal_to(facebook.version),
+        'v2.6',
     )
     assert_that(
-        'https://graph.facebook.com/v2.6/',
         equal_to(facebook.url),
+        'https://graph.facebook.com/',
     )
 
 
@@ -28,10 +28,10 @@ def test_facebook_change():
     }
     facebook = Facebook(**params)
     assert_that(
-        'v2.8',
         equal_to(facebook.version),
+        'v2.8',
     )
     assert_that(
-        'this is my token',
         equal_to(facebook.access_token),
+        'this is my token',
     )

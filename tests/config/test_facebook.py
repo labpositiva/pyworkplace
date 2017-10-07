@@ -15,7 +15,7 @@ def test_facebook_graph_version():
 
 def test_url_graph_default():
     assert_that(
-        'https://graph.facebook.com/v2.6/',
+        'https://graph.facebook.com/',
         equal_to(FACEBOOK_GRAPH_URL),
     )
 
@@ -24,5 +24,10 @@ def test_url_graph_default():
 def test_url_graph():
     assert_that(
         equal_to(FACEBOOK_GRAPH_URL),
-        'https://graph.facebook.com/v2.8/',
+        'https://graph.facebook.com/',
+    )
+
+    assert_that(
+        equal_to(FACEBOOK_GRAPH_VERSION),
+        'v2.8',
     )
