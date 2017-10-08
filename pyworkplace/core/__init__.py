@@ -11,6 +11,7 @@ from pyworkplace.config import WORKPLACE_ACCESS_TOKEN
 from pyworkplace.config import WORKPLACE_API_VERSION
 from pyworkplace.config import WORKPLACE_URL
 from pyworkplace.core.enum import BaseEnum
+from pyworkplace.mixins import BaseMixin
 
 
 class NotificationType(BaseEnum):
@@ -29,13 +30,14 @@ class ThreadState(BaseEnum):
     existing_thread = 'existing_thread'
 
 
-class Base(object):
+class Base(BaseMixin):
     """Base Workplace Wrapper
     https://developers.facebook.com/docs/workplace/
     """
 
     _auth_args = None
     _response = None
+    _after_send = None
 
     version = None
     access_token = None
@@ -58,7 +60,7 @@ class Base(object):
             self.version,
         )
 
-    def _make_request(self, **kwargs):
+    def _send(self, **kwargs):
         """Make request for request by method
         Input:
             request: recipient id to send to
@@ -126,7 +128,7 @@ class Base(object):
             self._response = kwargs
             return self._response
 
-        return self._make_request(**kwargs)
+        return self._send(**kwargs)
 
     def send_message(
         self, recipient_id, message,
