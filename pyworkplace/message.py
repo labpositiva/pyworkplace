@@ -4,6 +4,7 @@ from pyworkplace.core import NotificationType
 
 
 class Message(Facebook):
+    request_endpoint = 'me/messages'
 
     def send_text_message(
         self, recipient_id, message,
