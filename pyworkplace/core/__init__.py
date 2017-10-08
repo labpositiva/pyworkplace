@@ -107,7 +107,7 @@ class Base(BaseMixin):
     def response(self, value):
         raise NotImplementedError('Not Implemented')
 
-    def send_raw(self, resource, **kwargs):
+    def send_raw(self, **kwargs):
         """Make raw request for facebook
         Input:
             resource: recipient id to send to
@@ -118,11 +118,13 @@ class Base(BaseMixin):
         """
         request_endpoint = '{}{}'.format(
             self.url,
-            resource,
+            kwargs['resource'],
         )
         kwargs['url'] = request_endpoint
         kwargs['method'] = kwargs.get('method', 'get')
-        kwargs['headers'] = kwargs.get('headers') or self.auth_args
+        kwargs['headers'] = kwargs.get(
+            'headers', self.auth_args,
+        )
 
         if DEBUG:
             self._response = kwargs
@@ -148,7 +150,7 @@ class Base(BaseMixin):
             'id': recipient_id,
         }
         payload['notification_type'] = notification_type.value
-        return self.send_raw(payload)
+        return self.send_raw(**{'payload': payload})
 
 
 class Facebook(Base):
