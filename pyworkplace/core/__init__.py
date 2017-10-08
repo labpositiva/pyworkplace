@@ -125,7 +125,6 @@ class Base(BaseMixin):
         kwargs['headers'] = kwargs.get(
             'headers', self.auth_args,
         )
-
         if DEBUG:
             self._response = kwargs
             return self._response
@@ -200,8 +199,8 @@ class Facebook(Base):
             self.request_endpoint,
         )
         kwargs['params'] = self.auth_args
-        kwargs['json'] = kwargs.get('payload')
-        kwargs['Content-type'] = 'application/json'
+        kwargs['json'] = kwargs.pop('payload')
+        kwargs['headers'] = {'Content-type': 'application/json'}
 
         if DEBUG:
             self._response = kwargs
