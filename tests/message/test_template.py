@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 from hamcrest import assert_that
-from hamcrest import equal_to
 from hamcrest import has_entries
-from hamcrest import has_entry
 from hamcrest import not_none
 
 from pyworkplace.template import Template
