@@ -1,5 +1,5 @@
-HTTPie authors
-==============
+Pyworkplace authors
+===================
 
 * `Luis Mayta <https://github.com/luismayta>`_
 
