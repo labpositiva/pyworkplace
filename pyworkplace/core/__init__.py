@@ -154,6 +154,16 @@ class Base(BaseMixin):
 class Facebook(Base):
     request_endpoint = '/me/messages'
 
+    @property
+    def auth_args(self):
+        """Make auth args validation
+        """
+        if not self._auth_args:
+            self._auth_args = {
+                'access_token': self.access_token,
+            }
+        return self._auth_args
+
     def __init__(self, **kwargs):
         """
         @required:
@@ -187,14 +197,12 @@ class Facebook(Base):
             self.url,
             self.request_endpoint,
         )
+        kwargs['params'] = self.auth_args
+        kwargs['json'] = kwargs.get('payload')
+        kwargs['Content-type'] = 'application/json'
 
         if DEBUG:
             self._response = kwargs
             return self._response
 
-        self._response = requests.post(
-            kwargs.get('url'),
-            params=self.auth_args,
-            json=kwargs.get('payload'),
-        )
-        return self._response
+        return self._send(**kwargs)
