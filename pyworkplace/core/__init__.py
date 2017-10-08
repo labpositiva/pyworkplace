@@ -207,3 +207,7 @@ class Facebook(Base):
             return self._response
 
         return self._send(**kwargs)
+
+
+class Workplace(Base):
+    pass
