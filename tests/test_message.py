@@ -32,14 +32,14 @@ def test_send_message():
         'notification_type': 'REGULAR',
     }
     response = {
-        'url': 'https://graph.facebook.com/v2.8/me/messages?access_token={}'.format(
-            params['access_token'],
-        ),
-        'method': 'post',
+        'url': 'https://graph.facebook.com/v2.8/me/messages',
+        'params': {'access_token': params['access_token']},
+        'json': body,
+        'headers': {'Content-type': 'application/json'},
     }
     assert_that(
-        message.response,
         equal_to(response),
+        message.response,
     )
 
 
@@ -65,15 +65,15 @@ def test_send_text_message():
         'recipient': {'id': RECIPIENT_ID},
         'notification_type': 'REGULAR',
     }
-
     response = {
-        'url': 'https://graph.facebook.com/v2.8/{}'.format(body),
-        'method': 'post',
-        'headers': {'Authorization': 'Bearer this is my token'},
+        'url': 'https://graph.facebook.com/v2.8/me/messages',
+        'params': {'access_token': params['access_token']},
+        'json': body,
+        'headers': {'Content-type': 'application/json'},
     }
     assert_that(
-        message.response,
         equal_to(response),
+        message.response,
     )
 
 
