@@ -75,6 +75,10 @@ class Base(object):
             self._response = requests.put(
                 **kwargs
             )
+        elif method == 'post':
+            self._response = requests.post(
+                **kwargs
+            )
         else:
             raise NotImplementedError('Not Implemented')
         return self._response
@@ -146,6 +150,7 @@ class Base(object):
 
 
 class Facebook(Base):
+    request_endpoint = '/me/messages'
 
     def __init__(self, **kwargs):
         """
@@ -167,3 +172,27 @@ class Facebook(Base):
             FACEBOOK_GRAPH_URL,
             self.version,
         )
+
+    def send_raw(self, **kwargs):
+        """Make raw request for facebook
+        Input:
+            url: url request endpoint
+            json: payload
+        Output:
+            Response from API as <dict>
+        """
+        kwargs['url'] = '{}{}'.format(
+            self.url,
+            self.request_endpoint,
+        )
+
+        if DEBUG:
+            self._response = kwargs
+            return self._response
+
+        self._response = requests.post(
+            kwargs.get('url'),
+            params=self.auth_args,
+            json=kwargs.get('payload'),
+        )
+        return self._response
