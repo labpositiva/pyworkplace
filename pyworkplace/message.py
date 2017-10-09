@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
-import os
-
+import magic
 import requests
-from requests_toolbelt import MultipartEncoder
 
+from pyworkplace.config import DEBUG
 from pyworkplace.core import Facebook
 from pyworkplace.core import NotificationType
 
@@ -101,29 +100,33 @@ class Attachment(Message):
         """
         payload = {
             'recipient': {
-                {
-                    'id': recipient_id,
-                },
+                'id': recipient_id,
             },
-            'notification_type': notification_type,
+            'notification_type': notification_type.value,
             'message': {
-                {
-                    'attachment': {
-                        'type': attachment_type,
-                        'payload': {},
-                    },
+                'attachment': {
+                    'type': attachment_type,
+                    'payload': {},
                 },
             },
-            'filedata': (os.path.basename(attachment_path), open(attachment_path, 'rb')),
+            'filedata': '@{};type={}'.format(
+                attachment_path,
+                magic.from_file(attachment_path, mime=True),
+            ),
         }
-        multipart_data = MultipartEncoder(payload)
-        multipart_header = {
-            'Content-Type': multipart_data.content_type,
-        }
+        kwargs = {}
+        kwargs['url'] = '{}{}'.format(
+            self.url,
+            self.request_endpoint,
+        )
+        kwargs['data'] = payload
+        kwargs['params'] = self.auth_args
+        if DEBUG:
+            self._response = kwargs
+            return self._response
+
         return requests.post(
-            self.url, data=multipart_data,
-            params=self.auth_args,
-            headers=multipart_header,
+            **kwargs
         ).json()
 
     def send_attachment_url(
