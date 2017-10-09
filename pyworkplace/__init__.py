@@ -3,7 +3,7 @@
 Pyworkplace - For workplace.
 
 """
-__version__ = '0.1.2'
+__version__ = '0.2.0'
 __author__ = 'Luis Mayta'
 __email__ = 'slovacus@gmail.com'
 __licence__ = 'Mit'
