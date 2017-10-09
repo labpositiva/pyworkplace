@@ -3,10 +3,9 @@
 
 DOCKER_NETWORK = $(PROJECT_NAME)_network
 
-docker.build:
-	@make clean
+docker.build: clean
 	@echo $(MESSAGE) "Building environment: ${env}"
-	@if [ "${env}" == "" ]; then \
+	if [ "${env}" == "" ]; then \
 		docker-compose build --no-cache; \
 	else \
 		docker-compose -f docker-compose.yml -f docker-compose/"${env}".yml build --no-cache; \

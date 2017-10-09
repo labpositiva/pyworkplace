@@ -3,7 +3,7 @@
 #
 
 VERSION:=$(shell grep __version__ pyworkplace/__init__.py)
-REQUIREMENTS="requirements-dev.txt"
+REQUIREMENTS :="requirements-dev.txt"
 TAG=""
 END=""
 
@@ -55,16 +55,23 @@ help:
 	@echo '        docs.make.html             Make documentation html'
 	@echo '        docs.make.pdf              Make documentation pdf'
 	@echo ''
+	@echo '    Package:'
+	@echo ''
+	@echo '        package.build              Build Package'
+	@echo ''
 	@echo '    Tests:'
 	@echo ''
+	@echo '        test                       Run All tests with coverage'
 	@echo '        test.lint                  Run all pre-commit'
 	@echo '        test.syntax                Run all syntax in code'
+	@echo '        test.pytest                Run all tests for execute ipdb'
 	@echo ''
 
 clean:
 	@echo "$(TAG)"Cleaning up"$(END)"
 	@rm -rf .tox *.egg dist build .coverage
 	@find . -name '__pycache__' -delete -print -o -name '*.pyc' -delete -print -o -name '*.tmp' -delete -print
+	@rm -rf *.egg-info/
 	@echo
 
 setup: clean
