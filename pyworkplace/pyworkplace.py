@@ -42,7 +42,7 @@ class Page(object):
         data = json.loads(payload)
 
         if data.get('object') != 'page':
-            raise ValueError('Object not is page')
+            return False
 
         def get_events(data):
             for entry in data.get('entry'):
