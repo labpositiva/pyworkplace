@@ -3,7 +3,7 @@ from hamcrest import assert_that
 from hamcrest import has_entries
 from hamcrest import not_none
 
-from pyworkplace.template import Template
+from pyworkplace.message import Template
 
 RECIPIENT_ID = 10000000
 URL = ''
