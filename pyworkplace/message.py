@@ -22,9 +22,8 @@ class Message(Facebook):
         Output:
             Response from API as <dict>
         """
-        message = message.encode(
-            'utf-8',
-        ) if isinstance(message, (str, bytes)) else None
+
+        message if isinstance(message, (str,)) else message.encode('utf-8')
 
         return self.send_message(
             recipient_id, {
@@ -74,7 +73,8 @@ class Template(Message):
         Output:
             Response from API as <dict>
         """
-        text = text.encode('utf-8') if isinstance(text, (str, bytes)) else None
+
+        text = text if isinstance(text, (str,)) else text.encode('utf-8')
 
         return self.send_message(
             recipient_id, {
