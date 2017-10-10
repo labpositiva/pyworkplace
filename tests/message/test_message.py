@@ -60,7 +60,7 @@ def test_send_text_message():
     )
 
     body = {
-        'message': {'text': 'o/ World'},
+        'message': {'text': 'o/ World'.encode('utf-8')},
         'recipient': {'id': RECIPIENT_ID},
         'notification_type': 'REGULAR',
     }
