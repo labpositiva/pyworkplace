@@ -38,7 +38,7 @@ def test_send_button():
                 'type': 'template',
                 'payload': {
                     'template_type': 'button',
-                    'text': 'button'.encode('utf-8'),
+                    'text': 'button',
                     'buttons': [
                         {
                             'type': 'postback',
