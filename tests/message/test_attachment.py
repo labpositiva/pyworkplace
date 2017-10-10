@@ -46,6 +46,6 @@ def test_send_image():
     }
 
     assert_that(
-        message.response,
-        has_entries(response),
+        response,
+        has_entries(message.response),
     )
