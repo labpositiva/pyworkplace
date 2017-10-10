@@ -47,6 +47,16 @@ extras_require = {
 }
 
 
+excludes_path = [
+    'tests',
+    'extras',
+    'docker',
+    'docker-compose',
+    '*.mk',
+    'Makefile',
+]
+
+
 def long_description():
     with codecs.open('README.rst', encoding='utf8') as f:
         return f.read()
@@ -62,7 +72,7 @@ setup(
     author=pyworkplace.__author__,
     author_email=pyworkplace.__email__,
     license=pyworkplace.__licence__,
-    packages=find_packages(exclude=['tests*']),
+    packages=find_packages(exclude=excludes_path),
     extras_require=extras_require,
     install_requires=install_requires,
     tests_require=tests_require,
