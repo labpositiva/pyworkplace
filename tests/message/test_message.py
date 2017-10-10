@@ -75,3 +75,55 @@ def test_send_text_message():
         response,
         has_entries(message.response),
     )
+
+
+def test_send_quick_replies_message():
+    params = {
+        'version': 'v2.8',
+        'access_token': 'this is my token',
+    }
+    message = Message(**params)
+    args = {
+        'recipient_id': RECIPIENT_ID,
+        'message': 'o/ World',
+        'quick_replies': [
+            {
+                'content_type': 'text',
+                'title': 'Search',
+                'payload': '<POSTBACK_PAYLOAD>',
+                'image_url': 'http://example.com/img/red.png',
+            },
+        ],
+    }
+    assert_that(
+        message.send_quick_replies_message(**args),
+        not_none(),
+    )
+
+    body = {
+        'message': {
+            'text': 'o/ World',
+            'quick_replies': [
+                {
+                    'content_type': 'text',
+                    'title': 'Search',
+                    'payload': '<POSTBACK_PAYLOAD>',
+                    'image_url': 'http://example.com/img/red.png',
+                },
+            ],
+        },
+        'recipient': {'id': RECIPIENT_ID},
+        'notification_type': 'REGULAR',
+
+    }
+    response = {
+        'url': 'https://graph.facebook.com/v2.8/me/messages',
+        'params': {'access_token': params['access_token']},
+        'json': body,
+        'headers': {'Content-type': 'application/json'},
+        'method': 'post',
+    }
+    assert_that(
+        response,
+        has_entries(message.response),
+    )
