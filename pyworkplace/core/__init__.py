@@ -64,28 +64,16 @@ class Base(BaseMixin):
         """Make request for request by method
         Input:
             request: recipient id to send to
-            method: (get, put)
         Output:
             Response from API as <dict>
         """
         if DEBUG:
             self._response = kwargs
             return self._response
-        method = kwargs.pop('method')
-        if method == 'get':
-            self._response = requests.get(
-                **kwargs
-            ).json()
-        elif method == 'put':
-            self._response = requests.put(
-                **kwargs
-            )
-        elif method == 'post':
-            self._response = requests.post(
-                **kwargs
-            )
-        else:
-            raise NotImplementedError('Not Implemented')
+        kwargs['method'] = kwargs.get('method').upper()
+        self._response = requests.request(
+            **kwargs
+        )
         return self._response
 
     @property
