@@ -31,6 +31,28 @@ class Message(Facebook):
             }, notification_type,
         )
 
+    def send_quick_replies_message(
+        self, recipient_id, message, quick_replies,
+        notification_type=NotificationType.regular,
+    ):
+        """Send text messages to the specified recipient.
+        https://developers.facebook.com/docs/messenger-platform/send-api-reference/quick-replies
+        Input:
+            recipient_id: recipient id to send to
+            text: text of message to send
+            quick_replies: quick replies to send
+        Output:
+            Response from API as <dict>
+        """
+
+        message if isinstance(message, (str,)) else message.encode('utf-8')
+        return self.send_message(
+            recipient_id, {
+                'text': message,
+                'quick_replies': quick_replies,
+            }, notification_type,
+        )
+
 
 class Template(Message):
 
@@ -61,7 +83,7 @@ class Template(Message):
         )
 
     def send_button(
-        self, recipient_id, text, buttons,
+        self, recipient_id, message, buttons,
         notification_type=NotificationType.regular,
     ):
         """Send text messages to the specified recipient.
@@ -74,7 +96,7 @@ class Template(Message):
             Response from API as <dict>
         """
 
-        text = text if isinstance(text, (str,)) else text.encode('utf-8')
+        message = message if isinstance(message, (str,)) else message.encode('utf-8')
 
         return self.send_message(
             recipient_id, {
@@ -82,7 +104,7 @@ class Template(Message):
                     'type': self.type,
                     'payload': {
                         'template_type': 'button',
-                        'text': text,
+                        'text': message,
                         'buttons': buttons,
                     },
                 },
