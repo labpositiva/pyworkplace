@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from hamcrest import assert_that
-from hamcrest import equal_to
 from hamcrest import has_entries
 from hamcrest import not_none
 
@@ -37,10 +36,11 @@ def test_send_message():
         'params': {'access_token': params['access_token']},
         'json': body,
         'headers': {'Content-type': 'application/json'},
+        'method': 'post',
     }
     assert_that(
-        message.response,
-        has_entries(response),
+        response,
+        has_entries(message.response),
     )
 
 
@@ -55,12 +55,12 @@ def test_send_text_message():
         'message': 'o/ World',
     }
     assert_that(
-        message.send_message(**args),
+        message.send_text_message(**args),
         not_none(),
     )
 
     body = {
-        'message': 'o/ World',
+        'message': {'text': 'o/ World'},
         'recipient': {'id': RECIPIENT_ID},
         'notification_type': 'REGULAR',
     }
@@ -69,8 +69,9 @@ def test_send_text_message():
         'params': {'access_token': params['access_token']},
         'json': body,
         'headers': {'Content-type': 'application/json'},
+        'method': 'post',
     }
     assert_that(
-        message.response,
-        has_entries(response),
+        response,
+        has_entries(message.response),
     )
