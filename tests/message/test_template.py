@@ -59,8 +59,9 @@ def test_send_button():
         'params': {'access_token': params['access_token']},
         'json': body,
         'headers': {'Content-type': 'application/json'},
+        'method': 'post',
     }
     assert_that(
-        message.response,
-        has_entries(response),
+        response,
+        has_entries(message.response),
     )
