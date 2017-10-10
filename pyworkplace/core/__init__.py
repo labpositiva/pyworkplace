@@ -68,6 +68,9 @@ class Base(BaseMixin):
         Output:
             Response from API as <dict>
         """
+        if DEBUG:
+            self._response = kwargs
+            return self._response
         method = kwargs.pop('method')
         if method == 'get':
             self._response = requests.get(
@@ -125,9 +128,6 @@ class Base(BaseMixin):
         kwargs['headers'] = kwargs.get(
             'headers', self.auth_args,
         )
-        if DEBUG:
-            self._response = kwargs
-            return self._response
 
         return self._send(**kwargs)
 
@@ -201,10 +201,7 @@ class Facebook(Base):
         kwargs['params'] = self.auth_args
         kwargs['json'] = kwargs.pop('payload')
         kwargs['headers'] = {'Content-type': 'application/json'}
-
-        if DEBUG:
-            self._response = kwargs
-            return self._response
+        kwargs['method'] = 'post'
 
         return self._send(**kwargs)
 
