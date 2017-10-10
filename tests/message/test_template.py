@@ -19,7 +19,7 @@ def test_send_button():
 
     args = {
         'recipient_id': RECIPIENT_ID,
-        'text': 'button',
+        'message': 'button',
         'buttons': [
             {
                 'type': 'postback',
