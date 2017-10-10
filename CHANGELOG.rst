@@ -9,6 +9,10 @@ This file uses change log convention from `keep a CHANGELOG`_.
 *************
 
 
+`0.3.0`_ - 2017-10-10
+**********************
+
+
 `0.2.4`_ - 2017-10-10
 **********************
 
@@ -41,7 +45,8 @@ This file uses change log convention from `keep a CHANGELOG`_.
 **********************
 
 
-.. _`Unreleased`: https://github.com/labpositiva/pyworkplace/compare/0.2.4...HEAD
+.. _`Unreleased`: https://github.com/labpositiva/pyworkplace/compare/0.3.0...HEAD
+.. _`0.3.0`: https://github.com/labpositiva/pyworkplace/compare/0.2.4...0.3.0
 .. _`0.2.4`: https://github.com/labpositiva/pyworkplace/compare/0.2.3...0.2.4
 .. _`0.2.3`: https://github.com/labpositiva/pyworkplace/compare/0.2.2...0.2.3
 .. _`0.2.2`: https://github.com/labpositiva/pyworkplace/compare/0.2.1...0.2.2
