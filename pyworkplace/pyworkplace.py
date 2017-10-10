@@ -41,7 +41,9 @@ class Page(object):
 
         data = json.loads(payload)
 
+        # Make sure this is a page subscription
         if data.get('object') != 'page':
+            print('Webhook failed, only support page subscription')
             return False
 
         def get_events(data):

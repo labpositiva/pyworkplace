@@ -6,6 +6,11 @@ from hamcrest import equal_to
 from pyworkplace import Page
 
 
+def test_page_access_token():
+    page = Page(**{'page_access_token': 'this is my token'})
+    assert_that(equal_to(page.page_access_token), 'this is my token')
+
+
 def test_handle_webhook_errors():
     page = Page(**{'page_access_token': 'this is my token'})
     payload = """
