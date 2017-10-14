@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-import json
-
 from pyworkplace.core import Workplace
 
 
@@ -9,21 +7,20 @@ class User(Workplace):
     https://developers.facebook.com/docs/workplace/account-management/api
     """
 
-    _url = 'Users'
+    endpoint = 'Users'
 
-    def filter_by_username(self, username):
-        """Filter by username
+    def filter_by_email(self, email):
+        """Filter by email
         https://developers.facebook.com/scim/v1/Users?filter=userName%20eq%20%22juliusc@example.com%22
         Input:
-          username: email of user
+          email: email of user
         Output:
           Response from API as <dict>
         """
-        resource = '{}?filter=userName+eq+"{}"'.format(
-            self._url,
-            username,
-        )
-        return self.send_raw(resource=resource)
+        kwargs = {
+            'params': {'filter': 'userName+eq+"{}"'.format(email)},
+        }
+        return self.send_raw(**kwargs)
 
     def get_by_id(self, user_id):
         """Get by user_id
@@ -33,11 +30,9 @@ class User(Workplace):
         Output:
           Response from API as <dict>
         """
-        resource = '{}/{}'.format(
-            self._url,
-            user_id,
-        )
-        return self.send_raw(resource=resource)
+        kwargs = {}
+        kwargs['url_request'] = '/{}'.format(user_id)
+        return self.send_raw(**kwargs)
 
     def update(self, user_id, data):
         """Update
@@ -48,14 +43,8 @@ class User(Workplace):
         Output:
           Response from API as <dict>
         """
-        if isinstance(data, dict):
-            data = json.dumps(data)
-        resource = '{}/{}'.format(
-            self._url,
-            user_id,
-        )
-        kwargs = {
-            'method': 'put',
-            'data': data,
-        }
-        return self.send_raw(resource=resource, **kwargs)
+        kwargs = {}
+        kwargs['url_request'] = '/{}'.format(user_id)
+        kwargs['data'] = data
+        kwargs['method'] = 'put'
+        return self.send_raw(**kwargs)

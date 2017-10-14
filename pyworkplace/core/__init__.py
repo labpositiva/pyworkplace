@@ -36,11 +36,13 @@ class Base(BaseMixin):
     """
 
     _auth_args = None
-    _response = None
     _after_send = None
+    _response = None
+    _request_endpoint = None
 
     version = None
     access_token = None
+    endpoint = None
     url = None
 
     def __init__(self, **kwargs):
@@ -49,6 +51,7 @@ class Base(BaseMixin):
             access_token
         @optional:
             version
+            url
         """
 
         self.version = kwargs.get('version', WORKPLACE_API_VERSION)
@@ -91,6 +94,10 @@ class Base(BaseMixin):
         return self._auth_args
 
     @property
+    def request_endpoint(self):
+        return self.url + self.endpoint
+
+    @property
     def response(self):
         return self._response or None
 
@@ -102,20 +109,21 @@ class Base(BaseMixin):
         """Make raw request for facebook
         Input:
             resource: recipient id to send to
-            method: (get, put)
+            method: (get, put, post)
             data: data content
         Output:
             Response from API as <dict>
         """
-        request_endpoint = '{}{}'.format(
-            self.url,
-            kwargs['resource'],
-        )
-        kwargs['url'] = request_endpoint
-        kwargs['method'] = kwargs.get('method', 'get')
         kwargs['headers'] = kwargs.get(
             'headers', self.auth_args,
         )
+        kwargs['url'] = self.request_endpoint
+        if kwargs.get('url_request'):
+            kwargs['url'] = '{}{}'.format(
+                kwargs['url'],
+                kwargs['url_request'],
+            )
+            del kwargs['url_request']
 
         return self._send(**kwargs)
 
@@ -141,7 +149,7 @@ class Base(BaseMixin):
 
 
 class Facebook(Base):
-    request_endpoint = '/me/messages'
+    endpoint = '/me/messages'
 
     @property
     def auth_args(self):
@@ -159,6 +167,7 @@ class Facebook(Base):
             access_token
         @optional:
             version
+            url
         """
 
         self.version = kwargs.get(
@@ -184,7 +193,7 @@ class Facebook(Base):
         """
         kwargs['url'] = '{}{}'.format(
             self.url,
-            self.request_endpoint,
+            self.endpoint,
         )
         kwargs['params'] = self.auth_args
         kwargs['json'] = kwargs.pop('payload')
