@@ -35,7 +35,6 @@ tests_require = [
 install_requires = [
     'requests>=2.11.0',
     'verify>=1.1.1',
-    'yamlreader>=3.0.4',
     'python-magic>=0.4.13',
 ]
 
