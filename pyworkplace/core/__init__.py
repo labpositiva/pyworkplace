@@ -36,14 +36,14 @@ class Base(BaseMixin):
     """
 
     _auth_args = None
-    _response = None
     _after_send = None
+    _response = None
+    _request_endpoint = None
 
     version = None
     access_token = None
     endpoint = None
     url = None
-    _request_endpoint = None
 
     def __init__(self, **kwargs):
         """
