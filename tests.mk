@@ -10,15 +10,15 @@ test.lint: clean
 test: clean
 	@echo $(MESSAGE) Running tests on the current Python interpreter with coverage $(END)
 	$(DOCKER_TEST) run --rm app \
-		py.test --cov pyworkplace --cov tests --doctest-modules --verbose pyworkplace tests
+		bash -c "py.test --cov pyworkplace --cov tests --doctest-modules --verbose pyworkplace tests";
 	@echo
 
 test.pytest: clean
 	@echo $(MESSAGE) Running tests on the current Python $(END)
 	@if [ "${test}" == "" ]; then \
 		$(DOCKER_TEST) run --rm app \
-			py.test -s pyworkplace tests; \
+			bash -c "py.test -s pyworkplace tests"; \
 	else \
 		$(DOCKER_TEST) run --rm app \
-			py.test -s -v tests/"${test}"; \
+			bash -c "py.test -s -v tests/${test}"; \
 	fi
