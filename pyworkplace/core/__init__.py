@@ -41,6 +41,7 @@ class Base(BaseMixin):
 
     version = None
     access_token = None
+    request_endpoint = None
     url = None
 
     def __init__(self, **kwargs):
@@ -49,6 +50,7 @@ class Base(BaseMixin):
             access_token
         @optional:
             version
+            url
         """
 
         self.version = kwargs.get('version', WORKPLACE_API_VERSION)
@@ -102,19 +104,17 @@ class Base(BaseMixin):
         """Make raw request for facebook
         Input:
             resource: recipient id to send to
-            method: (get, put)
+            method: (get, put, post)
             data: data content
         Output:
             Response from API as <dict>
         """
-        request_endpoint = '{}{}'.format(
-            self.url,
-            kwargs['resource'],
-        )
-        kwargs['url'] = request_endpoint
-        kwargs['method'] = kwargs.get('method', 'get')
         kwargs['headers'] = kwargs.get(
             'headers', self.auth_args,
+        )
+        kwargs['url'] = '{}{}'.format(
+            self.url,
+            self.request_endpoint,
         )
 
         return self._send(**kwargs)
@@ -159,6 +159,7 @@ class Facebook(Base):
             access_token
         @optional:
             version
+            url
         """
 
         self.version = kwargs.get(
