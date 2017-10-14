@@ -41,8 +41,9 @@ class Base(BaseMixin):
 
     version = None
     access_token = None
-    request_endpoint = None
+    endpoint = None
     url = None
+    _request_endpoint = None
 
     def __init__(self, **kwargs):
         """
@@ -93,6 +94,10 @@ class Base(BaseMixin):
         return self._auth_args
 
     @property
+    def request_endpoint(self):
+        return self.url + self.endpoint
+
+    @property
     def response(self):
         return self._response or None
 
@@ -112,10 +117,13 @@ class Base(BaseMixin):
         kwargs['headers'] = kwargs.get(
             'headers', self.auth_args,
         )
-        kwargs['url'] = '{}{}'.format(
-            self.url,
-            self.request_endpoint,
-        )
+        kwargs['url'] = self.request_endpoint
+        if kwargs.get('url_request'):
+            kwargs['url'] = '{}{}'.format(
+                kwargs['url'],
+                kwargs['url_request'],
+            )
+            del kwargs['url_request']
 
         return self._send(**kwargs)
 
@@ -141,7 +149,7 @@ class Base(BaseMixin):
 
 
 class Facebook(Base):
-    request_endpoint = '/me/messages'
+    endpoint = '/me/messages'
 
     @property
     def auth_args(self):
@@ -185,7 +193,7 @@ class Facebook(Base):
         """
         kwargs['url'] = '{}{}'.format(
             self.url,
-            self.request_endpoint,
+            self.endpoint,
         )
         kwargs['params'] = self.auth_args
         kwargs['json'] = kwargs.pop('payload')
