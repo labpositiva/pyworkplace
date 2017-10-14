@@ -65,3 +65,51 @@ def test_get_by_id():
         response,
         has_entries(user.response),
     )
+
+
+def test_update_user():
+
+    params = {
+        'version': 'v1',
+        'access_token': 'this is my token',
+    }
+    user = User(**params)
+
+    args = {
+        'user_id': USER_ID,
+        'data': {
+            'userName': 'slovacus@gmail.com',
+            'name': {
+                'formatted': 'Luis Mayta',
+            },
+            'title': 'Hacker',
+            'locale': 'es_LA',
+            'active': True,
+        },
+    }
+    body = {
+        'userName': 'slovacus@gmail.com',
+        'name': {
+            'formatted': 'Luis Mayta',
+        },
+        'title': 'Hacker',
+        'locale': 'es_LA',
+        'active': True,
+    }
+
+    assert_that(
+        user.update(**args),
+        not_none(),
+    )
+    response = {
+        'url': 'https://www.facebook.com/scim/v1/Users/{}'.format(USER_ID),
+        'headers': {
+            'Authorization': 'Bearer {}'.format(params['access_token']),
+        },
+        'data': body,
+        'method': 'put',
+    }
+    assert_that(
+        response,
+        has_entries(user.response),
+    )
