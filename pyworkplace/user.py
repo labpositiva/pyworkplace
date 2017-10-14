@@ -45,15 +45,8 @@ class User(Workplace):
         Output:
           Response from API as <dict>
         """
-        if isinstance(data, dict):
-            data = json.dumps(data)
-        resource = '{}/{}'.format(
-            self._url,
-            user_id,
-        )
-        kwargs = {
-            'resource': resource,
-            'method': 'put',
-            'data': data,
-        }
+        kwargs = {}
+        kwargs['url_request'] = '/{}'.format(user_id)
+        kwargs['data'] = data
+        kwargs['method'] = 'put'
         return self.send_raw(**kwargs)
