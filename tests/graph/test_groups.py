@@ -15,23 +15,23 @@ def test_get_all_members_without_fields():
         'access_token': 'this is my token',
         'community_id': COMMUNITY_ID,
     }
-    member = Group(**params)
+    group = Group(**params)
 
     assert_that(
-        member.get_all_members(),
+        group.get_all_members(),
         not_none(),
     )
     response = {
         'url': 'https://graph.facebook.com/v2.8/{}/members'.format(
             COMMUNITY_ID,
         ),
-        'params': member.fields,
+        'params': group.fields,
         'headers': {'access_token': params['access_token']},
         'method': 'get',
     }
     assert_that(
         response,
-        has_entries(member.response),
+        has_entries(group.response),
     )
 
 
@@ -45,10 +45,10 @@ def test_get_all_members_with_fields():
         'access_token': 'this is my token',
         'community_id': COMMUNITY_ID,
     }
-    member = Group(**params)
+    group = Group(**params)
 
     assert_that(
-        member.get_all_members(fields=FIELDS),
+        group.get_all_members(fields=FIELDS),
         not_none(),
     )
     response = {
@@ -61,7 +61,7 @@ def test_get_all_members_with_fields():
     }
     assert_that(
         response,
-        has_entries(member.response),
+        has_entries(group.response),
     )
 
 
