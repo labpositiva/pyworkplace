@@ -72,12 +72,24 @@ class Group(Graph):
         return self.send_raw(**kwargs)
 
     def add_member(self, email):
+        """Add member To group.
+        Input:
+            email
+        Output:
+            Response from API as <dict>
+        """
         kwargs = {}
         kwargs['data'] = {'email': email}
         kwargs['method'] = 'post'
         return self.send_raw(**kwargs)
 
     def remove_member(self, email):
+        """Remove member of group.
+        Input:
+            email
+        Output:
+            Response from API as <dict>
+        """
         kwargs = {}
         kwargs['data'] = {'email': email}
         kwargs['method'] = 'delete'
