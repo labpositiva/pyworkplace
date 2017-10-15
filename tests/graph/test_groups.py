@@ -94,3 +94,32 @@ def test_add_member():
         response,
         has_entries(group.response),
     )
+
+
+def test_remove_member_group():
+    params = {
+        'version': 'v2.8',
+        'access_token': 'this is my token',
+        'community_id': COMMUNITY_ID,
+    }
+    group = Group(**params)
+    args = {
+        'email': EMAIL,
+    }
+
+    assert_that(
+        group.remove_member(**args),
+        not_none(),
+    )
+    response = {
+        'url': 'https://graph.facebook.com/v2.8/{}/members'.format(
+            COMMUNITY_ID,
+        ),
+        'data': {'email': EMAIL},
+        'headers': {'access_token': params['access_token']},
+        'method': 'delete',
+    }
+    assert_that(
+        response,
+        has_entries(group.response),
+    )
