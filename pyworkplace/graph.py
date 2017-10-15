@@ -76,3 +76,9 @@ class Group(Graph):
         kwargs['data'] = {'email': email}
         kwargs['method'] = 'post'
         return self.send_raw(**kwargs)
+
+    def remove_member(self, email):
+        kwargs = {}
+        kwargs['data'] = {'email': email}
+        kwargs['method'] = 'delete'
+        return self.send_raw(**kwargs)
