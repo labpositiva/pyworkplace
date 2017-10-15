@@ -6,6 +6,7 @@ from hamcrest import not_none
 from pyworkplace.graph import Group
 
 COMMUNITY_ID = 10000000
+EMAIL = 'slovacus@gmail.com'
 
 
 def test_get_all_members_without_fields():
@@ -65,4 +66,31 @@ def test_get_all_members_with_fields():
     )
 
 
-# def test_get_
+def test_add_member():
+
+    params = {
+        'version': 'v2.8',
+        'access_token': 'this is my token',
+        'community_id': COMMUNITY_ID,
+    }
+    group = Group(**params)
+    args = {
+        'email': EMAIL,
+    }
+
+    assert_that(
+        group.add_member(**args),
+        not_none(),
+    )
+    response = {
+        'url': 'https://graph.facebook.com/v2.8/{}/members'.format(
+            COMMUNITY_ID,
+        ),
+        'data': {'email': EMAIL},
+        'headers': {'access_token': params['access_token']},
+        'method': 'post',
+    }
+    assert_that(
+        response,
+        has_entries(group.response),
+    )
