@@ -3,7 +3,7 @@ from hamcrest import assert_that
 from hamcrest import has_entries
 from hamcrest import not_none
 
-from pyworkplace.graph import Members
+from pyworkplace.graph import Group
 
 COMMUNITY_ID = 10000000
 
@@ -15,7 +15,7 @@ def test_get_all_members_without_fields():
         'access_token': 'this is my token',
         'community_id': COMMUNITY_ID,
     }
-    member = Members(**params)
+    member = Group(**params)
 
     assert_that(
         member.get_all_members(),
@@ -45,7 +45,7 @@ def test_get_all_members_with_fields():
         'access_token': 'this is my token',
         'community_id': COMMUNITY_ID,
     }
-    member = Members(**params)
+    member = Group(**params)
 
     assert_that(
         member.get_all_members(fields=FIELDS),
@@ -63,3 +63,6 @@ def test_get_all_members_with_fields():
         response,
         has_entries(member.response),
     )
+
+
+# def test_get_
