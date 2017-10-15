@@ -53,7 +53,6 @@ class Graph(Facebook):
         kwargs['headers'] = kwargs.get(
             'headers', self.auth_args,
         )
-        kwargs['params'] = kwargs['params']
         return self._send(**kwargs)
 
 
@@ -70,4 +69,10 @@ class Group(Graph):
         kwargs['params'] = self.fields
         if fields:
             kwargs['params'] = fields
+        return self.send_raw(**kwargs)
+
+    def add_member(self, email):
+        kwargs = {}
+        kwargs['data'] = {'email': email}
+        kwargs['method'] = 'post'
         return self.send_raw(**kwargs)
