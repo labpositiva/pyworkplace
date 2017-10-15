@@ -57,11 +57,7 @@ class Graph(Facebook):
         return self._send(**kwargs)
 
 
-class Groups(Graph):
-    endpoint = '/groups'
-
-
-class Members(Graph):
+class Group(Graph):
     endpoint = '/members'
 
     def get_all_members(self, fields=None):
