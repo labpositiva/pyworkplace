@@ -8,7 +8,7 @@ from pyworkplace.core import NotificationType
 
 
 class Message(Facebook):
-    request_endpoint = 'me/messages'
+    endpoint = 'me/messages'
 
     def send_text_message(
         self, recipient_id, message,
@@ -145,7 +145,7 @@ class Attachment(Message):
         kwargs = {}
         kwargs['url'] = '{}{}'.format(
             self.url,
-            self.request_endpoint,
+            self.endpoint,
         )
         kwargs['data'] = payload
         kwargs['params'] = self.auth_args

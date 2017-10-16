@@ -78,6 +78,7 @@ setup: clean
 	@make clean
 	pip install -r "${REQUIREMENTS_DIR}/setup.txt"
 	pre-commit install
+	cp -rf extras/git/hooks/prepare-commit-msg .git/hooks
 
 environment: clean
 	@if [ -e "$(HOME)/.pyenv" ]; then \
