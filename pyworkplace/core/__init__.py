@@ -161,7 +161,7 @@ class Facebook(Base):
             }
         return self._auth_args
 
-    def __init__(self, **kwargs):
+    def __init__(self, *args, **kwargs):
         """
         @required:
             access_token
